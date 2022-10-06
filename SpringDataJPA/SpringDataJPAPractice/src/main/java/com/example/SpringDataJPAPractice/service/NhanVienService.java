@@ -21,5 +21,8 @@ public interface NhanVienService {
 
     List<String> getMaNhanVienCoMucLuongCaoNhat();
 
+    void insertEmployee(NhanVien employee);
+
+    List<NhanVien> findNhanVienByLuong(int luong);
 
 }

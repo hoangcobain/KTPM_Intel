@@ -3,6 +3,7 @@ package com.example.SpringDataJPAPractice.repository;
 import com.example.SpringDataJPAPractice.entity.NhanVien;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,6 +12,9 @@ import java.util.List;
 public interface NhanVienRepository extends JpaRepository<NhanVien, String> {
     @Query(value = "select * from nhanvien where Luong <10000", nativeQuery = true)
     List<NhanVien> getNhanViensByLuong();
+
+    @Query(value = "select * from NhanVien where luong < :luong", nativeQuery = true)
+    List<NhanVien> findNhanVienByLuong(@Param("luong") int luong);
 
     @Query(value = "select SUM(Luong) from nhanvien", nativeQuery = true)
     Long getAllLuong();
@@ -53,4 +57,5 @@ public interface NhanVienRepository extends JpaRepository<NhanVien, String> {
 
     @Query(value = "select manv from nhanvien where luong=(select max(luong) from nhanvien)", nativeQuery = true)
     List<String> getMaNhanVienCoMucLuongCaoNhat();
+
 }

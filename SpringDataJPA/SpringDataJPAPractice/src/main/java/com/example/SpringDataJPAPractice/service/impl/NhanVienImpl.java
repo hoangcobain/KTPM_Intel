@@ -52,4 +52,14 @@ public class NhanVienImpl implements NhanVienService {
     public List<String> getMaNhanVienCoMucLuongCaoNhat() {
         return nhanVienRepository.getMaNhanVienCoMucLuongCaoNhat();
     }
+
+    @Override
+    public void insertEmployee(NhanVien employee) {
+        nhanVienRepository.save(employee);
+    }
+
+    @Override
+    public List<NhanVien> findNhanVienByLuong(int luong) {
+        return nhanVienRepository.findNhanVienByLuong(luong);
+    }
 }
